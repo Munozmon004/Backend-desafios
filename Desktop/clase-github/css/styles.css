@@ -1,0 +1,269 @@
+/* reset */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* estilos del body*/
+
+body{
+    background-color: #fef7e1;
+}
+
+main{
+    background-image: url(/IMG/background-image.jpeg);
+    background-color: floralwhite;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 550px;
+    width: 100%;    
+}
+
+footer{
+    background-color: bisque;
+
+}
+
+/* estilos de header*/
+
+header img{
+    width: 220px;
+    
+}
+
+header{
+    padding: 15px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-home{
+    width: 350px;
+}
+
+
+header nav ul{
+    list-style: none;
+    display: flex;
+    gap: 25px;
+   
+}
+
+header nav ul li{
+    background-color: rgb(240, 240, 133);
+    padding: 20px;
+    border-radius: 30px;
+    text-shadow: 1px 1px 2px white;
+    box-shadow: 1px 1px  3px black;
+   
+}
+
+/* estilos del main*/
+
+
+main h1, main, p{
+    text-align: center;
+    margin: 20px;   
+}
+
+div h2{
+    text-align: center;
+}
+
+main a{
+    display: block;
+    width: 250px;
+    border-radius: 40px;
+    margin: 90px 590px;
+    padding: 15px 30px;
+    text-decoration: none;
+    color: black;
+    background-color: gold;
+}
+
+
+/* estilos de footer*/
+
+.pie-page{
+    width: 100%;
+    background-color:burlywood;
+}
+
+.pie-page .grupo-uno{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+}
+
+.pie-page .grupo-uno .box figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.pie-page .grupo-uno .box figure img{
+    width: 250px;
+}
+
+.grupo-uno .box h3{
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+
+.pie-page .grupo-uno .box p{
+    color: black;
+    margin-bottom: 10px;
+}
+.pie-page .grupo-uno .red-social a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color:#fff;
+    margin-right: 10px;
+    background-color: rgb(218, 218, 53);
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.pie-page .grupo-uno .red-social a:hover{
+    color: #000;
+}
+
+.pie-page .grupo-dos{
+    background-color: aqua;
+    padding: 15px 10px;
+    text-align: center;
+    color: #000;
+}
+
+.pie-page .grupo-dos small{
+    font-size: 15px;
+}
+
+@media screen and (max-width:750px;){
+    
+
+    .pie-page .grupo-uno{
+        width: 80%;
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns:repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+    }
+}
+
+
+/* mq  version celulares */ 
+
+/* estilos del menu*/
+header nav ul li:hover{
+    background-color: #acffe9;
+    transform: scale(1.2);
+    box-shadow: 2px 3px 4px  black;
+
+}
+
+
+/* SLIDE NUESTRAS MARCAS */
+
+/*    RESET   */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* propiedades del contenedor */
+   /* GRID*/
+
+   .contenedor{
+    height: 900px;
+    display: grid;
+    grid-template-columns:repeat(2,33%) 34%;
+    grid-template-rows: repeat(3,25%);
+    gap: 5px;
+
+    
+}
+
+.hijo-uno{
+    background-image: url(/IMG/cake-img.png);
+}
+
+.hijo-dos{
+    background-image: url(/IMG/shoes-image.png);
+}
+
+.hijo-tres{
+    background-image: url(/IMG/suits-image.png);
+}
+
+.hijo-cuatro{
+    background-image: url(/IMG/barbershop-img.png);
+    background-repeat: no-repeat;
+}
+
+.hijo-cinco{
+    background-image: url(/IMG/beauty-img.png);
+    background-repeat: no-repeat;
+}
+
+.hijo-seis{
+    background-image: url(/IMG/clothes-img.png);
+    background-repeat: no-repeat;
+    
+}
+
+.hijo-siete{
+    background-image: url(/IMG/childclothes-img.png);
+    background-repeat: no-repeat;
+}
+
+.hijo-ocho{
+    background-image: url(/IMG/laboratory-img.png);
+    background-repeat: no-repeat;
+}
+
+.hijo-nueve{
+    background-image: url(/IMG/Englishclasses-img.png);
+    background-repeat: no-repeat;
+    align-items: center;
+}
+
+.hijo-diez{
+    background-image: url(/IMG/Combis-img.jpeg);
+    background-repeat: no-repeat;
+}
+
+.hijo-once{
+    background-image: url(/IMG/weddingdress-img.png);
+    background-repeat: no-repeat;
+}
+
+.hijo-doce{
+    background-image: url(/IMG/travel-img.png);
+    background-repeat: no-repeat;
+}
+
+
+    
