@@ -1,86 +1,64 @@
-const fs = require("fs");
-
 class ProductManager {
-    constructor(path) {
-        this.product = [];
-        this.path = path;
+    constructor() {
+      this.products = [];
+      this.nextId = 1;
     }
-
-    addProduct (title, description, price, thumbnait, code, stock) {
-        try {
-            if (
-                !title ||
-                !price ||
-                !description ||
-                !thumbnait ||
-                !code ||
-                !stock ||
-                this.products.finds((p) => p.code === code)
-            ){
-                // tira un error
-                throw new Error(
-                    "Error"
-                );
-            } else{
-                let newProduct = {
-                    id: this.products.length +1,
-                    title,
-                    description,
-                    price,
-                    thumbnait,
-                    code,
-                    stock,
-                };
-                this.products.push(newProduct);
-                fs.writeFileSync(this.path,JSON.stringify(this.products));        
-            }
-        } catch (error) {
-            console.log("error", error);
-        }
+  
+    addProduct(title, description, price, thumbnail, code, stock) {
+      if (!title || !description || !price || !thumbnail || !code || !stock) {
+        console.log("Todos los campos son obligatorios");
+        return;
+      }
+  
+      const existingProduct = this.products.find(product => product.code === code);
+      if (existingProduct) {
+        console.log("El código de producto ya existe");
+        return;
+      }
+  
+      const product = {
+        id: this.nextId++,
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock
+      };
+  
+      this.products.push(product);
     }
-    getProduct(){
-        try{
-            const data = fs.readFileSync(this.path);
-            this.products = JSON.parse(data);
-            return this.products;
-        } catch (error) {
-            console.log("error:")
-        }
+  
+    getProducts() {
+      return this.products;
     }
-    existente(id) {
-        return this.products.find((products) => products.id === id);
-    }
+  
     getProductById(id) {
-        const product = this.existe(id);
-        if (product) {
-            console.log(product);
-        } else {
-            console.log("Not Found");
-        }
-    }
-    updateProduct(id,updateFields) {
-        const productIndex = this.products.indexof((product) => product.id === id);
-        if (productIndex !== -1) {
-            let product = this.products[productIndex];
-            object.assign(product, updateFields);
-            this.products[productIndex] = product;
-        }
-    }
-
-    deleteProduct(id) {
-        const index = this.products.findIndex((product) => product.id === id);
-        if (index !== -1) {
-            this.products.splice(index, 1);
-        }
+      const product = this.products.find(product => product.id === id);
+      if (product) {
+        return product;
+      } else {
+        console.log("No se encontró ningún producto con el ID especificado");
+        return null;
+      }
     }
 }
+  
+const manager = new ProductManager();
 
-const product = new ProductManager("file.json");
+manager.addProduct("Producto 1", "Descripción del producto 1", 1.99, "imagen1.jpg", "P1", 50); // ok
 
-product.addProduct("title2", "description2", 1000, "thumbnait2", "abc123", 5);
+manager.addProduct("Producto 2", "Descripción del producto 2", 1.99, "imagen2.jpg", "P2", 20); // ok
 
-/* productos.addProduct("title1", "description1", 1000, "thumbnait1", "abc123", 6);
-productos.addProduct("title2", "description2", 1000, "thumbnait2", "abc125", 5);
-console.log(productos.getProduct()); */
+manager.addProduct("Producto 3", "Descripción del producto 3", 1.99, "imagen3.jpg", "P3", 10); // ok
 
-//productos.getProductById(3);
+manager.addProduct("Producto 4", "Descripción del producto 4", 1.99, "imagen4.jpg", "P4"); //debe mostrar mensaje de error 
+
+const products = manager.getProducts();
+
+console.log(products);
+
+
+console.log(manager.getProductById(2)); // debe mostrar los datos del pruducto 2
+
+console.log(manager.getProductById(5)); // debe mostrar mensaje de error
