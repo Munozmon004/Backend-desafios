@@ -1,0 +1,14 @@
+<div>
+    <h1> Carts Registred</h1>
+    {{#each ecommerce }}
+    <div>
+        <h2>Name: {{this.name}}</h2>
+        <ul>
+         <li>Description: {{this.description}}</li>
+         <li>Price: {{this.price}}</li>
+         <li>Stock: {{this.stock}}</li>
+         <li>Email: {{this.email}}</li>
+        </ul>
+    </div>
+    {{/each}}
+</div>
