@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	overflow-x: hidden;
+	font-size: 30px;
+	color: #e81e4a;
+	padding: 10px;
+}
+
+.header-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	gap: 220px;
+	list-style: none;
+	padding: 20px;
+	color: black;
+}
+
+.header-link {
+	color: #204b5e;
+	font-size: 40px;
+}
