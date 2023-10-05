@@ -67,6 +67,7 @@ const initializeApp = () => {
 	app.use(cookieParser(cookieSecret));
 	app.use(morgan('dev'));
 	app.use(cors());
+	app.use('/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 
 	const httpServer = app.listen(PORT, HOST, () => {
 		logger.info(`Server up on http://${HOST}:${PORT}`);

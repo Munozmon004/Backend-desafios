@@ -14,19 +14,19 @@ const initializePassport = () => {
 	passport.use(
 		'login',
 		new LocalStrategy(
-			{ usernameField: 'email' },
-			async (username, password, done) => {
+			{  passReqToCallback: true, usernameField: 'email' },
+			async (req, username, password, done) => {
 				try {
 					if (username == 'adminCoder@coder.com') {
 						const admin = await adminModel.findOne({ email: username });
-						if (!admin || !isValidPassword(admin, password))
-							return done(null, false, `Invalid credentials.`);
+						if (!admin || !isValidPassword(admin, password)) return done(null, false, `Invalid credentials.`);
+						req.session.user = admin;
 						return done(null, admin);
 					}
 
 					const user = await userModel.findOne({ email: username });
-					if (!user || !isValidPassword(user, password))
-						return done(null, false, `Invalid credentials.`);
+					if (!user || !isValidPassword(user, password)) return done(null, false, `Invalid credentials.`);
+					req.session.user = user;
 					return done(null, user);
 				} catch (err) {
 					return done(err);
@@ -41,20 +41,20 @@ const initializePassport = () => {
 			{ passReqToCallback: true, usernameField: 'email' },
 			async (req, username, password, done) => {
 				try {
-					// if (username == 'adminCoder@coder.com')
-					// 	return done(null, false, `Can't create an admin account.`);
+					if (username == 'adminCoder@coder.com') return done(null, false, `Can't create an admin account.`);
 
-					const user = await adminModel.findOne({ email: username });
+					const user = await userModel.findOne({ email: username });
 					if (user) return done(null, false, `Email already exist.`);
 
 					const { first_name, last_name } = req.body;
-					const newUser = await adminModel.create({
+					const newUser = await userModel.create({
 						first_name,
 						last_name,
 						email: username,
 						password: hashPassword(password),
-						role: 'admin',
+						role: 'user',
 					});
+					req.session.user = newUser;
 					return done(null, newUser);
 				} catch (err) {
 					return done(err);
@@ -69,7 +69,7 @@ const initializePassport = () => {
 			{
 				clientID: githubClientId,
 				clientSecret: githubClientSecret,
-				callbackURL: 'http://localhost:3000/api/sessions/githubcallback',
+				callbackURL: 'http://localhost:8080/api/sessions/githubCallback',
 			},
 			async (accesToken, refreshToken, profile, done) => {
 				try {
@@ -82,6 +82,7 @@ const initializePassport = () => {
 							password: '',
 						});
 					}
+					req.session.user = user;
 					return done(null, user);
 				} catch (err) {
 					return done(err);
@@ -89,7 +90,6 @@ const initializePassport = () => {
 			}
 		)
 	);
-	
 
 	passport.serializeUser((user, done) => {
 		done(null, user._id);
